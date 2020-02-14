@@ -31,3 +31,4 @@ target/
 # dependencies
 **/maven_repo/**
 **/node_modules/**
+**/db/**
