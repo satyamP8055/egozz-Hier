@@ -1,0 +1,7 @@
+.blueHeading {
+    background-color: rgb(8, 11, 90);
+    background: linear-gradient(50deg, rgb(8, 11, 90), black);
+    color: white;
+    padding: 13px;
+    height: 50px;
+}

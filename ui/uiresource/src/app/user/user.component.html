@@ -1,0 +1,52 @@
+<!-- NAVIGATION BAR OF USERPAGE -->
+
+<nav class="navbar navbar-fixed-top" *ngIf="showNav || shortWindow" [class.darkNavBar]="darkNav" [class.lightNavBar]="lightNav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#adminNavbar">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="navbar-brand">
+                <div class="logoHolder">
+                    <img src="{{logoLocation}}" class='logoImage'>
+                </div>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="adminNavbar">
+            <ul class="nav navbar-nav">
+                <li [class.active]="currentNav=='home'">
+                    <a [class.lightA]="lightNav" (click)="homeClicked()"><span class="fa fa-home"></span> Home</a>
+                </li>
+                <li [class.active]="currentNav=='aboutUs'">
+                    <a [class.lightA]="lightNav" (click)="aboutUsClicked()"><span class="fa fa-balance-scale"></span>
+                        About Us</a>
+                </li>
+                <li [class.active]="currentNav=='classes'">
+                    <a [class.lightA]="lightNav" (click)="catalogueClicked()"><span class="fa fa-area-chart"></span>
+                        Catalogue</a>
+                </li>
+                <li [class.active]="currentNav=='trip'" *ngIf="loggedIn">
+                    <a [class.lightA]="lightNav" (click)="tripClicked()"><span class="fa fa-road"></span> Trip History</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="loggedIn" [class.active]="currentNav=='profile'"><a [class.lightA]="lightNav" (click)="profileClicked()"><span class="glyphicon glyphicon-user"></span>
+                        {{firstName}}</a></li>
+                <li *ngIf="loggedIn"><a (click)="logoutClicked()" [class.lightA]="lightNav" data-toggle="modal" data-target="#formModal"><span
+                            class="fa fa-sign-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- CONTENT -->
+
+<div class="container-fluid">
+    <router-outlet></router-outlet>
+    <div class="row " id="footer" *ngIf="showFooter">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contentCol ">
+            <h4 style="text-align:center; margin: 0px; "><b><span class="fa fa-copyright "></span> EGOZZ</b> | yesegozz@gmail.com
+            </h4>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <table class="table table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">#</th>
+                        <th style="text-align: center; width:80px;">Start Date</th>
+                        <th style="text-align: center; width:80px;">End Date</th>
+                        <th style="text-align: center; width:155px;">Vehicle</th>
+                        <th style="text-align: center; width:40px;">AC</th>
+                        <th style="text-align: center; width:60px;">Distance</th>
+                        <th style="text-align: center; width: 95px;">Charge</th>
+                        <th style="text-align: center;">User</th>
+                        <th style="text-align: center;">Source</th>
+                        <th style="text-align: center;">Destination</th>
+                        <th style="text-align: center; width:110px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="trips.length<=0">
+                        <th colspan="11">No Trips Yet !</th>
+                    </tr>
+                    <tr *ngFor="let trip of trips; let i=index;">
+                        <th style="text-align: center;" class="dataCell">{{i}}</th>
+                        <td style="text-align: center;" class="dataCell">{{trip.startDate | date:'dd/MM/yyyy'}}</td>
+                        <td style="text-align: center;" class="dataCell">{{trip.endDate | date:'dd/MM/yyyy'}}</td>
+                        <td class="dataCell">{{trip.vehicle.vehicleName}} - {{trip.vehicle.vehicleNumber}}</td>
+                        <td class="dataCell" style="text-align: center;"><span class="greenHeading fa fa-check btnSpan" *ngIf="trip.ac"></span><span class="redHeading fa fa-remove btnSpan" *ngIf="!trip.ac"></span></td>
+                        <td class="dataCell">{{trip.distance}} KMS</td>
+                        <td class="dataCell"><span class="fa fa-inr"></span> {{trip.tripCharge | number}}</td>
+                        <td class="dataCell">{{trip.user.fullName}} - {{trip.user.phone}}</td>
+                        <td class="">{{trip.pickUpAddress}}</td>
+                        <td class="">{{trip.dropAddress}}</td>
+                        <th class="dataCell" style="text-align:center;" *ngIf="trip.tripStatus==-2">
+                            <span class="redHeading fa fa-remove btnSpan"></span> Cancelled
+                        </th>
+                        <th class="dataCell" style="text-align:center;" *ngIf="trip.tripStatus==-1">
+                            <span class="redHeading fa fa-remove btnSpan"></span> Rejected
+                        </th>
+                        <th class="dataCell" style="text-align:center;" *ngIf="trip.tripStatus==1">
+                            <span class="greenHeading fa fa-check btnSpan"></span> Confirmed
+                        </th>
+                        <th class="dataCell" style="text-align:center;" *ngIf="trip.tripStatus==0">
+                            <span class="greenHeading fa fa-info btnSpan"></span> Placed
+                        </th>
+                        <th style="text-align:center;" *ngIf="trip.tripStatus==2">
+                            <span class="greenHeading fa fa-check btnSpan"></span> Started
+                        </th>
+                        <th style="text-align:center;" *ngIf="trip.tripStatus==3">
+                            <span class="greenHeading fa fa-check btnSpan"></span> Completed
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

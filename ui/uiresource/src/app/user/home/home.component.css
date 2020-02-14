@@ -1,0 +1,82 @@
+.outerRow {
+    padding: 50px;
+    padding-top: 60px;
+}
+
+.outerRowSmall {
+    padding: 15px;
+    padding-top: 60px;
+}
+
+.outerCol {
+    padding: 10px;
+}
+
+.borderedBlue {
+    border-bottom: 2px solid rgb(8, 11, 90);
+}
+
+.simple {
+    padding: 0px;
+    margin: 0px;
+}
+
+.form {
+    padding-top: 30px;
+}
+
+.btnWhiteBlue {
+    width: 100%;
+    margin: 0px;
+    padding: 8px;
+    height: 37px;
+}
+
+.vehicleHolder {
+    padding: 10px;
+}
+
+.vehicleDataHolder {
+    padding: 10px;
+    text-align: center;
+}
+
+.mapBox {
+    padding: 0px;
+    margin-bottom: 2px;
+}
+
+.mapBox>input {
+    border: 0px solid white;
+    border-bottom: 2px solid rgb(229, 229, 229);
+}
+
+.horizontalFixedImageHolder {
+    margin: 0px;
+    width: 100%;
+    max-width: inherit;
+    text-align: center;
+}
+
+.horizontalImage {
+    height: 200px;
+    width: auto;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+agm-map {
+    height: 400px;
+}
+
+.vertical {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
+    height: auto;
+    max-height: 300px;
+}
+
+.inverted {
+    margin-bottom: 10px;
+}

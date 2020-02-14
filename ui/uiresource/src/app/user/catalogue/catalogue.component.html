@@ -1,0 +1,53 @@
+<div class="row " #catalogue>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 homeRow normalContentCol " [class.contentColSmall]="shortWindow" style="padding-top:50px; ">
+        <h1 class="greenHeading " style="text-align:left "><b></b></h1>
+        <p>We at EGOZZ have many variety of cabs you may prefer as per your need and favorites. starting from Hatchbacks, Sedan, Economy to Premium vehicles whichever you like to travel with. Just select your favorite car & have fun !</p>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 homeRow normalContentCol " [class.contentColSmall]="shortWindow" *ngFor="let vClass of vClasses; let i=index; ">
+        <h3 class="blueHeading " style="text-align:left "><b>{{vClass.className}}</b></h3>
+        <div class="row ">
+            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 imgSplCol " *ngIf="i%2==0 ">
+                <img src="{{host}}/files/{{vClass.image.fileLocation}} " class="fullGrid fullGridImage ">
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 ">
+                <table class="table table-condensed table-bordered " style="margin-top:50px; ">
+                    <thead>
+                        <tr>
+                            <th colspan="3 " style="text-align: center; ">{{vClass.className | uppercase}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th rowspan="5 " style="text-align:center; padding-top:50px; ">F<br>A<br>R<br>E</th>
+                        </tr>
+                        <tr>
+                            <th>Day base Charge</th>
+                            <td *ngIf="!vClass.acSwitch "><span class="fa fa-inr "></span> {{vClass.minAcDayCharge}} to <span class="fa fa-inr "></span> {{vClass.maxAcDayCharge}} </td>
+                            <td *ngIf="vClass.acSwitch "><span class="fa fa-inr "></span> {{vClass.minDefaultDayCharge}} to <span class="fa fa-inr "></span> {{vClass.maxAcDayCharge}} </td>
+                        </tr>
+                        <tr>
+                            <th>Distance Fule Charges</th>
+                            <td *ngIf="!vClass.acSwitch ">As an output of {{vClass.maxAcMileage}} to {{vClass.minAcMileage}} KMS per Litre.</td>
+                            <td *ngIf="vClass.acSwitch ">As an output of {{vClass.maxDefaultMileage}} to {{vClass.minAcMileage}} KMS per Litre.</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2 " style="text-align: center; ">OR</th>
+                        </tr>
+                        <tr>
+                            <th>Total Charges</th>
+                            <td *ngIf="!vClass.acSwitch ">As an output of <span class="fa fa-inr "></span> {{vClass.minAcKmsCharge}} to <span class="fa fa-inr "></span> {{vClass.maxAcKmsCharge}} per KM.</td>
+                            <td *ngIf="vClass.acSwitch ">As an output of <span class="fa fa-inr "></span> {{vClass.minDefaultKmsCharge}} to <span class="fa fa-inr "></span> {{vClass.maxAcKmsCharge}} per KM.</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2 ">Seats Available</th>
+                            <td>{{vClass.seat}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 imgSplCol " *ngIf="i%2!=0 ">
+                <img src="{{host}}/files/{{vClass.image.fileLocation}} " class="fullGrid fullGridImage ">
+            </div>
+        </div>
+    </div>
+</div>

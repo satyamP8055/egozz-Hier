@@ -1,0 +1,54 @@
+.outerRow {
+    padding: 50px;
+    padding-top: 70px;
+}
+
+.outerSmallRow {
+    padding: 10px;
+    padding-top: 70px;
+}
+
+.labelCol {
+    min-height: 60px;
+}
+
+.boxed,
+.blackRow {
+    min-height: 50px;
+    margin-top: 10px;
+}
+
+.btnDiv {
+    width: 100%;
+    border-radius: 0px;
+    height: 50px;
+    margin: 0px;
+}
+
+.boxCol {
+    padding: 11px;
+}
+
+.bordered {
+    margin-top: 0px;
+    padding: 2px;
+}
+
+.bordered>.col-lg-12,
+.bordered>.col-md-12,
+.bordered>.col-sm-12,
+.bordered>.col-xs-12 {
+    color: black;
+    background-color: white;
+    min-height: 50px;
+}
+
+.bigProfile {
+    padding: 100px;
+    background-color: brown;
+}
+
+.smallProfile {
+    color: black;
+    padding: 10px;
+}

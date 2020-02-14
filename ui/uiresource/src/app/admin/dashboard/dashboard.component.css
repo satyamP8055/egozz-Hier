@@ -1,0 +1,66 @@
+.logoHolder {
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    width: 150px;
+    padding-right: 10px;
+    height: 50px;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.brandLeft {
+    margin-right: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.logoImage {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+.contentBox {
+    margin-left: 200px;
+}
+
+.contentFormat {
+    padding: 10px;
+    padding-top: 80px;
+}
+
+.sidenav {
+    margin-top: 50px;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden;
+}
+
+.sidenav a {
+    padding: 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 15px;
+    height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background: rgb(8, 11, 90);
+}
+
+.sidenav .active {
+    background: rgb(14, 117, 10);
+    color: white;
+}

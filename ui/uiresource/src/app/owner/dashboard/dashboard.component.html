@@ -1,0 +1,61 @@
+<div class="sidenav" *ngIf="sideBar">
+    <a *ngFor="let element of elements" [class.active]="element==currentElement" (click)="selectElement(element)" routerLink="{{element.url}}">
+            {{element.label}}
+        </a>
+</div>
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#adminNavbar">
+                    <span class="fa fa-bars"></span>
+                </button>
+            <div class="navbar-brand">
+                <div class="logoHolder">
+                    <a (click)="sideBarToggle()" [class.activeBox]="sideBar" class="logoImage brandLeft"><span class='fa fa-bars'></span></a>
+                    <img src="{{logoLocation}}" class='logoImage brandRight'>
+                </div>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="adminNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li [class.active]="currentNav=='addVehicle'" (click)="selectNav('addVehicle')"><a routerLink="add-vehicle"><span class="fa fa-plus-square"></span> Add Vehicle</a></li>
+                <li [class.active]="currentNav=='profile'" *ngIf="profile" (click)="selectNav('profile')"><a routerLink="profile"><span class="glyphicon glyphicon-user"></span> {{firstName}}</a></li>
+                <li><a (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="contentFormat" [class.contentBox]="sideBar">
+    <router-outlet></router-outlet>
+
+    <div class="modal fade" id="alertModal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content alertBox">
+                <div class="modal-header hidden">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="dialogIconHolder">
+                        <span *ngIf="fail" class="dialogIcon redIcon fa fa-meh-o"></span>
+                        <span *ngIf="success" class="dialogIcon greenIcon fa fa-check-square-o"></span>
+                        <span *ngIf="msg" class="dialogIcon blueIcon fa fa-comments-o"></span>
+                    </div>
+                    <h3 class="titleHead dialogTitle" [class.blueIcon]="msg==true" [class.greenIcon]="success" [class.redIcon]="fail">{{message}}</h3>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+                            <button class="btn fullGrid" [class.btnBlue]="msg==true" [class.btnGreen]="success" [class.btnRed]="fail" data-dismiss="modal"><span class="btnSpan">OK</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="hidden" id="alertInvoker" data-toggle="modal" data-target="#alertModal"></button>
+
+</div>

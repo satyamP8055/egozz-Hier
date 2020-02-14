@@ -1,0 +1,15 @@
+.box {
+    background-color: rgb(255, 255, 255, 0.4);
+    margin-top: 50px;
+    border-radius: 2px;
+    min-height: 200px;
+    padding: 10px;
+}
+
+.form-control {
+    background-color: rgb(255, 255, 255, 0.5);
+    box-shadow: none;
+    border-radius: 2px;
+    height: 38px;
+    font-size: 13px;
+}

@@ -1,0 +1,131 @@
+.logoHolder {
+    text-align: center;
+    padding: 5px;
+    width: 150px;
+    padding-right: 10px;
+    height: 50px;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.logoImage {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+.darkNavBar {
+    border-radius: 0px;
+    color: white;
+    border: 0px solid black;
+    background: linear-gradient(54deg, rgb(0, 0, 0, 0.8), rgb(8, 11, 90, 0.8));
+}
+
+.switchElement {
+    padding: 5px;
+    text-align: center;
+}
+
+.lightNavBar {
+    border-radius: 0px;
+    color: black;
+    border: 0px solid black;
+    background: rgb(255, 255, 255, 0.9);
+}
+
+.brandLeft {
+    margin-right: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.homeRow {
+    padding: 50px;
+    padding-top: 40px;
+}
+
+.homeRowSmall {
+    padding: 20px;
+}
+
+.firstRow {
+    margin-top: 10px;
+    margin-bottom: 200px;
+}
+
+.firstSmallRow {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.greenHeading {
+    color: rgb(14, 117, 10);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.titleRow {
+    margin-bottom: 20px;
+}
+
+.homeRow>p {
+    font-size: 17px;
+}
+
+.contentCol>p {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+
+.contentCol>h4 {
+    margin-left: 50px;
+    opacity: 0.7;
+}
+
+.fullGridHead {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.titleCol {
+    color: rgb(8, 11, 90);
+    background-color: transparent;
+}
+
+.blueHeading {
+    background-color: rgb(8, 11, 90);
+    background: linear-gradient(50deg, rgb(8, 11, 90), black);
+    color: white;
+    padding: 13px;
+    height: 50px;
+}
+
+.contentCol {
+    padding: 50px;
+}
+
+.normalContentCol {
+    padding: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.contentColSmall {
+    padding: 20px;
+}
+
+.modal-body>.row>div>form>div>.form-control {
+    height: 50px;
+}
+
+.modal-body>.row>div>form>div>button {
+    height: 50px;
+}
+
+.modal-body>.row>div>form {
+    padding-top: 30px;
+}

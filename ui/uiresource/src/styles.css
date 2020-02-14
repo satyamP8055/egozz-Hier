@@ -1,0 +1,612 @@
+.logoHolder {
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+}
+
+.logoImage {
+    transition: 1s;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+.darkBoxed {
+    box-shadow: 1px 2px 3px 5px rgb(207, 204, 204);
+}
+
+.boxed {
+    box-shadow: 3px 5px 3px 0px rgb(229, 229, 229);
+}
+
+.logoTitle {
+    color: rgb(8, 11, 90);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-bottom: 2px solid rgb(8, 11, 90);
+    font-size: 27px;
+}
+
+input:focus {
+    box-shadow: none;
+    border: 1 px solid white;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 1 px solid white;
+}
+
+.form-group {
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.form-control {
+    box-shadow: none;
+    border-radius: 2px;
+    height: 38px;
+    font-size: 13px;
+}
+
+.btnFormGroup {
+    padding-top: 0px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.forgotPasswordLabelDiv {
+    text-align: right;
+}
+
+.forgotPasswordLabel {
+    font-size: 12px;
+    color: rgb(192, 39, 45);
+}
+
+.btnRed {
+    border-radius: 2px;
+    margin-top: 5px;
+    height: 40px;
+    width: 100%;
+    font-size: 12px;
+    color: white;
+    background-color: rgb(192, 39, 45);
+}
+
+.btnGreen {
+    border-radius: 2px;
+    margin-top: 5px;
+    height: 40px;
+    width: 100%;
+    font-size: 12px;
+    color: white;
+    background-color: rgb(14, 117, 10);
+}
+
+.btnBlue {
+    border-radius: 2px;
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    font-size: 12px;
+    color: white;
+    background-color: rgb(8, 11, 90);
+}
+
+.btnWhiteBlue {
+    border-radius: 2px;
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    font-size: 12px;
+    background-color: white;
+    color: rgb(8, 11, 90);
+}
+
+.btnWhiteGreen:hover {
+    color: rgb(8, 11, 90);
+}
+
+.btnWhiteGreen:focus {
+    color: rgb(8, 11, 90);
+}
+
+.btn:hover {
+    color: white;
+}
+
+.btn:focus {
+    color: white;
+}
+
+.btnWhiteGreen {
+    border-radius: 2px;
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    font-size: 12px;
+    background-color: white;
+    color: rgb(14, 117, 10);
+}
+
+.btnWhiteBlue:hover {
+    color: rgb(14, 117, 10);
+}
+
+.btnWhiteBlue:focus {
+    color: rgb(14, 117, 10);
+}
+
+.lightA {
+    color: black;
+}
+
+.active>a {
+    background: rgb(14, 117, 10);
+    color: white;
+}
+
+.active>.lightA {
+    font-weight: bold;
+    background-color: transparent;
+    color: rgb(14, 117, 10);
+}
+
+.darkNavBar>div>div>ul>.active>a {
+    font-weight: bold;
+    background-color: transparent;
+    color: rgb(14, 117, 10);
+}
+
+.errMessage {
+    color: rgb(192, 39, 45);
+}
+
+.activeBox>a {
+    color: white;
+}
+
+.navbar {
+    border-radius: 0px;
+    color: white;
+    border: 0px solid black;
+    background: black;
+    /* background: linear-gradient(100deg, silver, rgb(8,11,90)); */
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-nav>li>a:hover {
+    background-color: rgb(8, 11, 90);
+    color: white;
+}
+
+.navbar-nav>li>a:focus {
+    background-color: rgb(8, 11, 90);
+    color: white;
+}
+
+.lightNavBar>div>div>.navbar-nav>li>a:hover {
+    color: rgb(8, 11, 90);
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.lightNavBar>div>div>.navbar-nav>li>a:focus {
+    color: rgb(8, 11, 90);
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.darkNavBar>div>div>.navbar-nav>li>a:hover {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.darkNavBar>div>div>.navbar-nav>li>a:focus {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.boxTitle {
+    margin: 0px;
+    background-color: rgb(8, 11, 90);
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.titleRow {
+    color: white;
+    border-radius: 2px;
+    padding: 0px;
+    height: 50px;
+    text-align: center;
+}
+
+.dataRow {
+    color: white;
+    ;
+    border-radius: 2px;
+    padding: 0px;
+    min-height: 50px;
+}
+
+.titleCol {
+    background-color: rgb(8, 11, 90);
+    padding: 0px;
+    padding-top: 0px;
+    max-height: 400px;
+}
+
+.invisible {
+    visibility: none;
+}
+
+.imgSplCol {
+    background-color: transparent;
+    padding: 0px;
+    padding-top: 0px;
+    max-height: 400px;
+}
+
+.dataInverseCol {
+    background-color: black;
+    color: white;
+    height: inherit;
+    padding: 0px;
+}
+
+.dataCol {
+    color: black;
+    background-color: white;
+    height: inherit;
+    padding: 0px;
+}
+
+.dataCol>h2 {
+    font-weight: bold;
+    padding: 15px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.dataRow>.dataInverseCol>h2 {
+    font-size: 20px;
+    padding: 15px;
+    padding-left: 10px;
+}
+
+.fullGrid {
+    width: 100%;
+    margin: 0px;
+    min-height: 50px;
+    border-radius: 0%;
+}
+
+.fullGridImage {
+    transition: 2s;
+    width: 100%;
+    height: auto;
+    max-height: inherit;
+}
+
+.btnSpan {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btnGreen:hover {
+    background: rgb(8, 11, 90);
+}
+
+.btnGreen:focus {
+    background: rgb(8, 11, 90);
+}
+
+.btnBlue:hover,
+.btnRed:hover {
+    background: rgb(14, 117, 10);
+}
+
+.btnBlue:focus,
+.btnRed:focus {
+    background: rgb(14, 117, 10);
+}
+
+.fullGridHead {
+    padding: 10px;
+}
+
+.fullGridData {
+    padding: 10px;
+    text-align: justify;
+    font-size: 14px;
+}
+
+.modal-content {
+    border-radius: 2px;
+    margin-top: 150px;
+    padding: 10px;
+}
+
+.alertBox {
+    opacity: 0.9;
+}
+
+.modal-header,
+.modal-footer {
+    border: 0px solid white;
+}
+
+.close {
+    border-radius: 100%;
+    color: rgb(192, 39, 45);
+    height: 30px;
+    width: 30px;
+    opacity: 0.7;
+}
+
+.blueIcon {
+    color: rgb(8, 11, 90);
+}
+
+.greenIcon {
+    color: rgb(14, 117, 10);
+}
+
+.close:hover {
+    background-color: rgb(192, 39, 45);
+    color: white;
+    opacity: 0.7;
+}
+
+.close:focus {
+    background-color: rgb(192, 39, 45);
+    color: white;
+    opacity: 0.7;
+}
+
+.circular {
+    border-radius: 100%;
+}
+
+.modal-backdrop {
+    background-color: white;
+    opacity: 0.8 !important;
+}
+
+.redTitle,
+.redIcon {
+    color: rgb(192, 39, 45);
+}
+
+.dialogTitle {
+    font-weight: bold;
+    text-align: center;
+}
+
+.dialogIconHolder {
+    text-align: center;
+}
+
+.dialogIcon {
+    font-size: 70px;
+}
+
+.hidden {
+    transition: 1s;
+    display: none;
+}
+
+.cover {
+    background-color: white;
+    background-color: rgb(255, 255, 255, 0.9);
+}
+
+.loaderRow {
+    text-align: center;
+    height: 200px;
+    margin-top: 300px;
+}
+
+.loaderImage {
+    height: 100%;
+    width: auto;
+    max-width: inherit;
+    animation: loaderAnimation 3s infinite;
+}
+
+@keyframes loaderAnimation {
+    /* flame pulses */
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+input>button {
+    background-color: rgb(8, 11, 90);
+    color: white;
+    border-radius: 2px;
+}
+
+.noEdit {
+    font-weight: bold;
+    cursor: not-allowed;
+    color: rgb(8, 11, 90);
+}
+
+.contentArea {
+    padding: 0px;
+}
+
+.colOfContent {
+    padding: 0px;
+}
+
+.rowOfContent {
+    padding-top: 50px;
+}
+
+.topBar {
+    height: 100px;
+}
+
+input[type="date"] {
+    cursor: pointer;
+}
+
+.imageHolder {
+    text-align: center;
+}
+
+.ticketBox {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    color: rgb(8, 11, 90);
+}
+
+.ticketPrime {
+    background-color: rgb(14, 117, 10);
+    box-shadow: 3px 5px 3px 0px rgb(14, 117, 10, 0.6);
+    color: white;
+}
+
+.ticketBox:hover {
+    background-color: rgb(8, 11, 90);
+    box-shadow: 3px 5px 3px 0px rgb(8, 11, 90, 0.6);
+    color: white;
+}
+
+.boxImage {
+    height: inherit;
+    width: auto;
+    max-width: 100%;
+}
+
+.centered {
+    text-align: center;
+}
+
+.topBarCol {
+    padding-top: 30px;
+}
+
+.topBarBtn:hover {
+    color: rgb(8, 11, 90);
+    font-weight: bold;
+}
+
+.topBarBtn:focus {
+    color: rgb(8, 11, 90);
+    font-weight: bold;
+}
+
+.topBarBtn {
+    cursor: pointer;
+}
+
+.selectedTopBar {
+    color: rgb(14, 117, 10);
+    font-weight: bold;
+}
+
+.greenHeading {
+    color: rgb(14, 117, 10);
+    text-align: center;
+}
+
+.blueHeading {
+    color: rgb(8, 11, 90);
+    text-align: center;
+}
+
+.switchElement {
+    cursor: pointer;
+}
+
+p {
+    text-align: justify;
+}
+
+.blackRow {
+    color: white;
+    background: linear-gradient(54deg, black, rgb(8, 11, 90));
+    min-height: 50px;
+}
+
+.whiteRow {
+    background-color: white;
+    min-height: 50px;
+}
+
+.smallMargin {
+    background: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.smallPadding {
+    background-color: brown;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.horizontalFixedImageHolder {
+    width: 100%;
+    max-width: inherit;
+    text-align: center;
+}
+
+.horizontalImage {
+    height: 220px;
+    width: auto;
+    max-width: inherit;
+}
+
+.payPalBtn {
+    background-color: rgb(255, 204, 0);
+    text-align: center;
+    height: 50px;
+    padding: 5px;
+    box-shadow: 3px 5px 3px 0px rgb(229, 229, 229);
+}
+
+.payPalBtn>img {
+    height: 40px;
+    width: auto;
+    max-width: 100%;
+}
+
+.payUBtn {
+    background-color: white;
+    text-align: center;
+    height: 50px;
+    padding: 5px;
+    box-shadow: 3px 5px 3px 0px rgb(229, 229, 229);
+}
+
+.payUBtn>img {
+    max-height: 40px;
+    width: auto;
+    max-width: 100%;
+}

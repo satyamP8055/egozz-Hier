@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table class="table table-condensed table-bordered" id="transactionData">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">#</th>
+                        <th style="text-align: center;">Amount</th>
+                        <th style="text-align: center;">Trip Date</th>
+                        <th style="text-align: center;">Vehicle</th>
+                        <th style="text-align: center;">Transaction Type</th>
+                        <th style="text-align: center;">Owner</th>
+                        <th style="text-align: center;">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="transactions.length<=0">
+                        <th colspan="7">No Transactions Yet !</th>
+                    </tr>
+                    <tr *ngFor="let transaction of transactions; let i=index;">
+                        <th style="text-align: center;" class="dataCell">{{i+1}}</th>
+                        <td class="dataCell"><span class="fa fa-inr"></span> {{transaction.amount}}</td>
+                        <td class="dataCell">{{transaction.trip.startDate | date:'dd/MM/yyyy'}} - {{transaction.trip.endDate | date:'dd/MM/yyyy'}}</td>
+                        <td class="dataCell">{{transaction.trip.vehicle.vehicleColor}} {{transaction.trip.vehicle.vehicleName}} - {{transaction.trip.vehicle.vehicleNumber}}</td>
+                        <td *ngIf="transaction.transactionType=='IncPending'" class="dataCell"> Dues for Owner </td>
+                        <td *ngIf="transaction.transactionType=='IncDeposit'" class="dataCell"> Deposit </td>
+                        <td *ngIf="transaction.transactionType=='Cash'" class="dataCell"> Cash Received by Owner </td>
+                        <td class="dataCell">{{transaction.owner.fullName}}</td>
+                        <td class="dataCell">{{transaction.remarks}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

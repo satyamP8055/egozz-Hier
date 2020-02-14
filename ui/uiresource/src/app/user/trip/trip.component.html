@@ -1,0 +1,144 @@
+<div class="row outerRow" [class.outerSmallRow]="shortWindow">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 labelCol" *ngFor="let trip of trips; let i=index;">
+        <div class="row blackRow">
+            <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10 boxCol">
+                <h4 style="margin: 0px;">
+                    <b>
+                        <span *ngIf="trip.tripStatus==-2 || trip.tripStatus==-1" style="padding:2px; padding-left: 10px; padding-right:10px; background-color: rgb(255,255,255); color:rgb(192,29,45)">CANCELLED</span>
+                        <span *ngIf="trip.tripStatus==2" style="padding:2px; padding-left: 10px; padding-right:10px; background-color: rgb(255,255,255); color:rgb(14,117,10)">ON THE WAY</span>
+                        <span *ngIf="trip.tripStatus==3" style="padding:2px; padding-left: 10px; padding-right:10px; background-color: rgb(255,255,255); color:rgb(14,117,10)">COMPLETED</span>
+                        <span *ngIf="trip.tripStatus!=3 && trip.tripStatus!=2 && trip.tripStatus!=-2 && trip.tripStatus!=-1"
+                            style="padding:2px; padding-left: 10px; padding-right:10px; color:rgb(8,11,90); background-color: rgb(255,255,255);">UPCOMING</span>
+                        <span style='font-size: 17px; margin-left:10px;'>{{trip.startDate | date:'dd/MM/yyyy'}} - {{trip.endDate | date:'dd/MM/yyyy'}}
+                        ({{trip.vehicle.vehicleName | uppercase}} - {{trip.vehicle.vehicleNumber}})</span>
+                    </b>
+                </h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="padding:0px;">
+                <button class="btn btnBlue btnDiv" (click)="showTripDetails(i)"><span
+                        class="btnSpan fa fa-chevron-circle-down" *ngIf="!showFlag[i]"></span><span
+                        class="btnSpan fa fa-chevron-circle-up" *ngIf="showFlag[i]"></span></button>
+            </div>
+        </div>
+        <div class="row bordered blackRow" *ngIf="showFlag[i]">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th *ngIf="trip.tripStatus!=3 && trip.tripStatus!=2 && trip.tripStatus!=-2 && trip.tripStatus!=-1" style="text-align:center; padding:0px;">
+                                <button class="btn btnRed btnDiv" (click)="cancelTrip(trip.tripId)">CANCEL</button>
+                            </th>
+                            <th *ngIf="trip.tripStatus!=3 && trip.tripStatus!=2 && trip.tripStatus!=-2 && trip.tripStatus!=-1" style="text-align: center; padding: 15px;"><b *ngIf="!trip.ac">NON </b><b> AIR-CONDITIONED
+                                    {{trip.vehicle.vehicleColor | uppercase}}
+                                    {{trip.vehicleClass.className | uppercase}} </b></th>
+                            <th *ngIf="trip.tripStatus==3 || trip.tripStatus==2 || trip.tripStatus==-2 || trip.tripStatus==-1" colspan="2" style="text-align: center;"><b *ngIf="!trip.ac">NON </b><b> AIR-CONDITIONED
+                                    {{trip.vehicle.vehicleColor | uppercase}}
+                                    {{trip.vehicleClass.className | uppercase}} </b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:200px;"> Travel Distance </th>
+                            <td> {{trip.distance}} KMS </td>
+                        </tr>
+                        <tr>
+                            <th style="width:200px;"> Charge Base </th>
+                            <td *ngIf="trip.kmsBased">
+                                <span *ngIf="trip.ac">{{trip.distance}} X <span class="fa fa-inr"></span> {{trip.vehicle.acKmsCharge}}
+                                </span>
+                                <span *ngIf="!trip.ac">{{trip.distance}} X <span class="fa fa-inr"></span> {{trip.vehicle.defaultKmsCharge}}
+                                </span>
+                            </td>
+                            <td *ngIf="!trip.kmsBased">
+                                <span *ngIf="trip.ac">{{trip.vehicle.acDayCharge}} + Fuel Charge @
+                                    {{trip.vehicle.acMileage}} KMS per Litre</span>
+                                <span *ngIf="!trip.ac">{{trip.vehicle.defaultDayCharge}} + Fuel Charge @
+                                    {{trip.vehicle.defaultMileage}} KMS per Litre</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:200px;"> Total Fare </th>
+                            <td> <span class="fa fa-inr"></span> {{trip.tripCharge}}.</td>
+                        </tr>
+                        <tr *ngIf="trip.tripStatus==-1">
+                            <th>Message from EGOZZ</th>
+                            <td>Dear User, This service cannot be fulfilled as the vehicle is found unavailable at the moment. Your inconveinence is deeply regretted !</td>
+                        </tr>
+                        <tr *ngIf="trip.tripStatus==3 && (trip.userReviewStars==null || trip.userReviewStars=='null')">
+                            <td colspan='2'>
+                                <h4 class='centered blueHeading'><b>Post Your Review</b></h4>
+                                <div class='row' style='padding:15px;'>
+                                    <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1' style='text-align:center; padding:10px;'>
+                                        <span class='prime fa' *ngFor="let j of [1,2,3,4,5]" (click)="markReview(i,j)" [class.fa-star-o]="j>reviewStar[i]" [class.fa-star]="j<=reviewStar[i]"></span>
+                                    </div>
+                                    <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12' style='padding:10px;'>
+                                        <textarea type='text' [(ngModel)]="reviewMessage[i]" class="form-control"></textarea>
+                                    </div>
+                                    <div class='col-lg-2 col-md-2 col-sm-12 col-xs-12' style='padding:10px;'>
+                                        <button class='btn btnBlue' style='height:50px; margin:0px;' (click)="post(i,trip.tripId)">POST</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr *ngIf="trip.tripStatus==3 && (trip.userReviewStars!=null && trip.userReviewStars!='null')">
+                            <td colspan='2'>
+                                <h4 class='centered blueHeading'><b>Your Review</b></h4>
+                                <div class='row' style='padding:15px;'>
+                                    <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1' style='text-align:center; padding:10px;'>
+                                        <span style='cursor:not-allowed' class='prime fa' *ngFor="let j of [1,2,3,4,5]" [class.fa-star-o]="j>reviewStar[i]" [class.fa-star]="j<=reviewStar[i]"></span>
+                                    </div>
+                                    <div class='col-lg-5 col-md-5 col-sm-12 col-xs-12' style='padding:10px;'>
+                                        <textarea type='text' [(ngModel)]="reviewMessage[i]" class="form-control" readonly></textarea>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alerts and Loaders -->
+
+<div class="modal fade" id="alertModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content alertBox">
+            <div class="modal-header hidden">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="dialogIconHolder">
+                    <span *ngIf="fail" class="dialogIcon redIcon fa fa-meh-o"></span>
+                    <span *ngIf="success" class="dialogIcon greenIcon fa fa-check-square-o"></span>
+                    <span *ngIf="msg" class="dialogIcon blueIcon fa fa-comments-o"></span>
+                </div>
+                <h3 class="titleHead dialogTitle" [class.blueIcon]="msg==true" [class.greenIcon]="success" [class.redIcon]="fail">{{message}}</h3>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+                        <button class="btn fullGrid" [class.btnBlue]="msg==true" [class.btnGreen]="success" [class.btnRed]="fail" data-dismiss="modal"><span class="btnSpan">OK</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<button class="hidden" id="alertInvoker" data-toggle="modal" data-target="#alertModal"></button>
+
+
+
+<div *ngIf="loading" class="modal-backdrop cover">
+    <h1>Loading</h1>
+    <div class="row loaderRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+            <img src="{{darkLogo}}" class="loaderImage">
+        </div>
+    </div>
+</div>

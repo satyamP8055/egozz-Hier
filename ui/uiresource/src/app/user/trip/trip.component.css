@@ -1,0 +1,63 @@
+.outerRow {
+    padding: 50px;
+    padding-top: 70px;
+}
+
+.outerSmallRow {
+    padding: 10px;
+    padding-top: 70px;
+}
+
+.labelCol {
+    min-height: 60px;
+}
+
+.boxed,
+.blackRow {
+    min-height: 50px;
+    margin-top: 10px;
+}
+
+.btnDiv {
+    width: 100%;
+    border-radius: 0px;
+    height: 50px;
+    margin: 0px;
+}
+
+.prime {
+    margin: 8px;
+    font-size: 30px;
+    color: rgb(8, 11, 90);
+    cursor: pointer;
+}
+
+textarea:read-only {
+    background-color: white;
+    cursor: grabbing;
+}
+
+.prime:hover {
+    font-size: 32px;
+    color: rgb(14, 117, 10);
+}
+
+.boxCol {
+    padding: 15px;
+}
+
+.bordered {
+    margin-top: 0px;
+    padding: 2px;
+    padding-top: 0px;
+}
+
+.bordered>.col-lg-12,
+.bordered>.col-md-12,
+.bordered>.col-sm-12,
+.bordered>.col-xs-12 {
+    color: black;
+    background-color: white;
+    min-height: 50px;
+    padding-top: 18px;
+}

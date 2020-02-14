@@ -1,0 +1,25 @@
+.greenHeading {
+    color: rgb(14, 117, 10);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contentCol>p {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+
+.contentCol>h4 {
+    margin-left: 50px;
+    opacity: 0.7;
+}
+
+.contentCol {
+    padding: 50px;
+}
+
+.contentColSmall {
+    padding: 20px;
+}

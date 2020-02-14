@@ -1,0 +1,13 @@
+agm-map {
+    height: 400px;
+}
+
+.mapBox {
+    padding: 0px;
+    margin-bottom: 2px;
+}
+
+.mapBox>input {
+    border: 0px solid white;
+    border-bottom: 2px solid rgb(229, 229, 229);
+}

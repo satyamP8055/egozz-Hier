@@ -1,0 +1,200 @@
+<div class="row outerRow" [class.outerRowSmall]="shortWindow">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="vehicleLoaded">
+        <div class="row " style="padding:10px">
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6" style="padding:0px;">
+                <button class="btn btnWhiteBlue boxed btnSpan" style="padding:5px;" (click)="quit()"><span
+                        class="fa fa-backward"></span> Back</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" [class.hidden]="!vehicleLoaded" *ngFor="let vehicle of vehicles; let i=index;">
+        <div class="row vehicleHolder">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 vehicleDataHolder boxed">
+                <div class="horizontalFixedImageHolder">
+                    <img src="{{host}}/files/{{vehicle.images[0].fileLocation}}" class="horizontalImage">
+                </div>
+                <h6 class="blueHeading simple"><b>{{vehicle.vehicleColor | uppercase}}
+                        {{vehicle.vehicleName | uppercase}}</b></h6>
+                <h5 class="greenHeading simple"><span class="fa fa-inr"></span> <b>{{vehicle.charge}}</b></h5>
+                <button class="btn btnGreen" (click)="bookNow(vehicle)">Book Now</button>
+                <button class="btn btnBlue" (click)="viewDetails(vehicle)">View Details</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12 col-xs-12 outerCol" [class.hidden]="vehicleLoaded">
+
+        <div class="form-group mapBox" *ngIf="stage==0 || stage==1">
+            <label *ngIf="stage==0">Source </label>
+            <label *ngIf="stage==1">Destination </label>
+            <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+        </div>
+        <h4 *ngIf="stage==0 || stage==1" style='background-color: rgb(14,117,10,0.2); padding: 10px; margin-bottom: 0px;'><b style="color:rgb(8,11,90); ">Address:</b> {{address}}</h4>
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" *ngIf="stage==0 || stage==1">
+            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+        </agm-map>
+
+        <form class="form" [formGroup]="tripData" *ngIf="stage==2">
+            <div class="form-group mapBox">
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>Source</label>
+                        <textarea readonly class="form-control" style="background-color: white;">{{this.startAddress}}</textarea>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>Destination</label>
+                        <textarea readonly class="form-control" style="background-color: white;">{{this.endAddress}}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label for="startDate">Start on</label>
+                        <input type="date" class="form-control" [min]="minStartDate" (change)="startDateChanged()" formControlName="startOn">
+                        <label class="errMessage" *ngIf="startOnErrorFlag">{{startOnError}}</label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label for="endDate">End on</label>
+                        <input type="date" [min]="minEndDate" class="form-control" formControlName="endOn">
+                        <label class="errMessage endOn" *ngIf="endOnErrorFlag">{{endOnError}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="acSwitch">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="text-align:right;">
+                        <button class="btn btnWhiteBlue" (click)="switchAc()"><span class="fa fa-check-square-o btnSpan"
+                                *ngIf="ac"></span><span *ngIf="!ac" class="fa fa-square-o btnSpan"></span></button>
+                    </div>
+                    <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10">
+                        <h5><b>I want the Car Air Conditioned.</b></h5>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row" *ngIf="stage==2" style="margin-bottom:30px;">
+            <h5 style="margin:15px; margin-top:30px;"><b>Select Your Vehicle Class </b></h5>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6" *ngFor="let vClass of vClasses; let i=index;" (click)="checkAcSwitch(i)">
+                <div class="row" style="padding:15px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 boxed ticketBox" [class.ticketPrime]="selected==i">
+                        <b>{{vClass.className | uppercase}} </b><br> {{vClass.seat}} seater<br>
+                        <b *ngIf="vClass.acSwitch"><span class="fa fa-inr"></span> {{vClass.minDefaultDayCharge}} - <span class="fa fa-inr"></span> {{vClass.maxAcDayCharge}}</b>
+                        <b *ngIf="!vClass.acSwitch"><span class="fa fa-inr"></span> {{vClass.minAcDayCharge}} - <span class="fa fa-inr"></span> {{vClass.maxAcDayCharge}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group btnFormGroup mapBox">
+            <button class="btn btnGreen" style="height:50px;" type="button" (click)="toNextStage(stage+1)">{{btnLabel}}</button>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="alertModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content alertBox">
+            <div class="modal-header hidden">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="dialogIconHolder">
+                    <span *ngIf="fail" class="dialogIcon redIcon fa fa-meh-o"></span>
+                    <span *ngIf="success" class="dialogIcon greenIcon fa fa-check-square-o"></span>
+                    <span *ngIf="msg" class="dialogIcon blueIcon fa fa-comments-o"></span>
+                </div>
+                <h3 class="titleHead dialogTitle" [class.blueIcon]="msg==true" [class.greenIcon]="success" [class.redIcon]="fail"> {{message}}</h3>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+                        <button class="btn fullGrid" [class.btnBlue]="msg==true" [class.btnGreen]="success" [class.btnRed]="fail" data-dismiss="modal"><span class="btnSpan">OK</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<button class="hidden" id="alertInvoker" data-toggle="modal" data-target="#alertModal"></button>
+
+
+<div class="modal fade" id="viewModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content formBox alertBox" style="border:0px solid rgb(8,11,90); padding:10px; 
+             margin-top: 30px;">
+            <div class="modal-header" style="margin-bottom:0px; padding-top: 0px; padding-bottom: 0px;">
+                <div class="row" style="padding:0px; margin-top:0px;">
+                    <button type="button" class="close" data-dismiss="modal" id="dismissModalHere">&times;</button>
+                </div>
+                <div class="row" style="padding:0px;">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 switchElement blackRow" style="text-align:center; padding:10px;">
+                        <h4><b>{{vehicle.vehicleColor | uppercase}} {{vehicle.vehicleName | uppercase}} -
+                                {{vehicle.vehicleNumber}}</b></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="margin-top:0px; padding-top:0px; background-color: white ;margin-bottom:0px; padding-bottom: 0px;">
+                <div class="row" style="margin-top:0px; padding-top:0px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                        <div class="horizontalFixedImageHolder" style="padding:0px;">
+                            <img src="{{host}}/files/{{currentImage.fileLocation}}" class="vertical">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding:0px; margin:0px;">
+                        <button class="btn btnBlue btnSpan" style="margin: 0px; height:50px; border-radius:0px;" (click)="previous()"><span class="fa fa-backward"></span> Previous</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding:0px; margin:0px;">
+                        <button class="btn btnBlue btnSpan" style="margin: 0px; height:50px; border-radius:0px;" (click)="next()">Next <span class="fa fa-forward"></span></button>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <p style="padding:10px;">
+                            <b>{{vehicle.vehicleName}}</b>
+                            <span *ngIf="!vehicle.acSwitch"> is a Luxury <b>{{vehicle.vehicleClass.className}}
+                                    {{vehicle.vehicleClass.seat}} seater
+                                    car </b> always comes <b>Air-Conditioned</b> and charged as <span
+                                    class="fa fa-inr"></span> <b>{{vehicle.acKmsCharge}}</b> per KMS if travelled more than <b>{{vehicle.kmsSwitch}} KMS</b> otherwise,
+                            <span class="fa fa-inr"></span> <b>{{vehicle.acDayCharge}}</b> as Per Day base charge & Fuel with the average of <b>{{vehicle.acMileage}} KMS</b> per Litre for the distance travelled throughout the trip.</span>
+                            <span *ngIf="vehicle.acSwitch">
+                                is a <b>{{vehicle.vehicleClass.className}} {{vehicle.vehicleClass.seat}} seater
+                                    car </b> <span *ngIf="ac">prefered Air-Conditioned by you, charged as <span
+                                        class="fa fa-inr"></span> <b>{{vehicle.acKmsCharge}}</b> per KMS if travelled more than <b>{{vehicle.kmsSwitch}} KMS</b> otherwise,
+                            <span class="fa fa-inr"></span> <b>{{vehicle.acDayCharge}}</b> as Per Day base charge & Fuel with the average of <b>{{vehicle.acMileage}} KMS</b> per Litre for the distance travelled throughout the trip.</span>
+
+                            <span *ngIf="!ac">prefered Non Air-Conditioned by you, charged as <span
+                                        class="fa fa-inr"></span> <b>{{vehicle.defaultKmsCharge}}</b> per KMS if travelled more than <b>{{vehicle.kmsSwitch}} KMS</b> otherwise,
+                            <span class="fa fa-inr"></span> <b>{{vehicle.defaultDayCharge}}</b> as Per Day base charge & Fuel with the average of <b>{{vehicle.defaultMileage}} KMS</b> per Litre for the distance travelled throughout the trip.</span>
+                            </span>
+                        </p>
+                        <h5 style="text-align: center;"><b><span class="fa fa-inr"></span> {{vehicle.charge}} is the
+                                Estimated charge only & it may vary on changing of the trip distance..</b></h5>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px; margin:0px;">
+                        <button data-dismiss="modal" class="btn btnGreen" style="margin: 0px; height:40px; border-radius:0px;" (click)="bookNow(vehicle)">BOOK
+                            NOW</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<button class="hidden" id="viewInvoker" data-toggle="modal" data-target="#viewModal"></button>
+
+
+<div *ngIf="loading" class="modal-backdrop cover">
+    <div class="row loaderRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+            <img src="{{darkLogo}}" class="loaderImage">
+        </div>
+    </div>
+</div>

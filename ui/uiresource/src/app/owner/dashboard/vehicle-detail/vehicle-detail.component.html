@@ -1,0 +1,135 @@
+<div class="container-fluid">
+    <div class="row titleRow">
+        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 col-lg-offset-1 col-md-offset-1 titleCol">
+            <button class="btn btnBlue fullGrid" (click)="previous()"><span
+                    class="fa fa-toggle-left btnSpan"></span></button>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 titleCol classNameCol">
+            <h4 class="fullGrid fullGridHead">{{vehicle.vehicleName | uppercase}} - {{vehicle.vehicleNumber}}</h4>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 titleCol">
+            <button class="btn btnBlue fullGrid" (click)="next()"><span
+                    class="fa fa-toggle-right btnSpan"></span></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 imgSplCol">
+            <img src="{{host}}/files/{{currentImage.fileLocation}}" class="fullGrid fullGridImage">
+        </div>
+    </div>
+    <div class="row dataRow">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-1 col-md-offset-1 dataInverseCol classNameCol">
+            <h2 class="fullGrid fullGridHead">{{vehicle.vehicleClass.className}}</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 dataInverseCol">
+            <button class=" btn btnBlue fullGrid " (click)="editClicked()"><span
+                    class=" fa fa-edit btnSpan"></span></button>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 dataInverseCol">
+            <button class=" btn btnRed fullGrid " id="deleteBtn" data-toggle="modal" data-target="#deleteConfirmationModal"><span class=" fa fa-trash btnSpan"></span></button>
+        </div>
+    </div>
+    <div class="row dataRow">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 dataCol">
+            <h2 class="fullGrid fullGridHead"><span *ngIf="vehicle.vehicleClass.acSwitch">Air-Conditioned </span>Trip Charges </h2>
+            <p class=" fullGridData ">
+                Whenever a Customer takes a <b>{{vehicle.vehicleClass.className}} </b> trip<span *ngIf="vehicle.vehicleClass.acSwitch"> with the Air Conditioned
+                    Facility</span>, <br>If the trip goes less than <b>{{vehicle.kmsSwitch}} KMS</b>, The Person pays
+                <span class="fa fa-inr"></span> <b>{{vehicle.acDayCharge}} </b>as the Vehicle Reservation Charge added with the fuel for the distance travelled throughout the trip with an average of <b>{{vehicle.acMileage}}
+                    KM per Litre </b> where you get <span class="fa fa-inr"></span><b>{{vehicle.acDayCharge - vehicle.vehicleClass.appDayIncentive}}</b> as the Reservation Charge and fuel charge as an average of <b>{{vehicle.acMileage}} KM per Litre</b>.
+                Other than that if the trip goes beyond
+                <b>{{vehicle.kmsSwitch}} KMS</b>, the total fare is paid as an output of <span class='fa fa-inr'></span>
+                <b>{{vehicle.acKmsCharge}} PER
+                    KM</b> by the Customer where you receive as an output of <span class="fa fa-inr"></span> <b>{{vehicle.acKmsCharge - vehicle.vehicleClass.appKmsIncentive}} PER
+                        KM</b>.
+            </p>
+        </div>
+    </div>
+    <div class="row dataRow">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 dataInverseCol">
+            <h2 class="fullGrid fullGridHead"> Color : {{vehicle.vehicleColor}} </h2>
+        </div>
+    </div>
+    <div class="row dataRow" *ngIf="vehicle.vehicleClass.acSwitch">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 dataCol">
+            <h2 class="fullGrid fullGridHead">Non Air-Conditioned Trip Charges </h2>
+            <p class=" fullGridData ">
+                Whenever a Customer takes a <b>{{vehicle.vehicleClass.className}} </b> trip without the Air-Conditioned Facility, <br>If the trip goes less than <b>{{vehicle.kmsSwitch}} KMS</b>, The Person pays <span class="fa fa-inr"></span> <b>{{vehicle.defaultDayCharge}} </b>as
+                the Vehicle Reservation Charge added with the fuel for the distance travelled throughout the trip with an average of <b>{{vehicle.defaultMileage}} KM per Litre </b> where you get <span class="fa fa-inr"></span><b>{{vehicle.defaultDayCharge - vehicle.vehicleClass.appDayIncentive}}</b>                as the Reservation Charge and fuel charge as an average of <b>{{vehicle.defaultMileage}} KM per Litre</b>. Other than that if the trip goes beyond
+                <b>{{vehicle.kmsSwitch}} KMS</b>, the total fare is paid as an output of <span class='fa fa-inr'></span>
+                <b>{{vehicle.defaultKmsCharge}}
+                    PER KM</b>.
+            </p>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteConfirmationModal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content alertBox">
+                <div class="modal-header hidden">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="dialogIconHolder">
+                        <span class="dialogIcon blueIcon fa fa-question-circle-o"></span>
+                    </div>
+                    <h3 class="titleHead dialogTitle">Confirm removal of {{vehicle.vehicleName}} ? Action Cannot be reverted again.. </h3>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button class=" btn btnBlue fullGrid" data-dismiss="modal" (click)="deleteVehicle()"><span
+                                    class="fa fa-check btnSpan"></span></button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button class=" btn btnRed fullGrid" data-dismiss="modal"><span
+                                    class="fa fa-close btnSpan"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="alertModal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content alertBox">
+                <div class="modal-header hidden">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="dialogIconHolder">
+                        <span *ngIf="fail" class="dialogIcon redIcon fa fa-meh-o"></span>
+                        <span *ngIf="success" class="dialogIcon greenIcon fa fa-check-square-o"></span>
+                        <span *ngIf="msg" class="dialogIcon blueIcon fa fa-comments-o"></span>
+                    </div>
+                    <h3 class="titleHead dialogTitle" [class.blueIcon]="msg==true" [class.greenIcon]="success" [class.redIcon]="fail">{{message}}</h3>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+                            <button class="btn fullGrid" [class.btnBlue]="msg==true" [class.btnGreen]="success" [class.btnRed]="fail" data-dismiss="modal"><span class="btnSpan">OK</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="hidden" id="alertInvoker" data-toggle="modal" data-target="#alertModal"></button>
+
+    <div *ngIf="loading" class="modal-backdrop cover">
+        <div class="row loaderRow">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+                <img src="{{logoLocation}}" class="loaderImage">
+            </div>
+        </div>
+    </div>
+
+</div>

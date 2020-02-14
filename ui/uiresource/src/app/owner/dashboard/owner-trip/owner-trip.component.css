@@ -1,0 +1,15 @@
+th>.btn,
+td>.btn {
+    height: 30px;
+    margin: 0px;
+    border-radius: 0px;
+    width: 100%;
+}
+
+.dataCell {
+    padding-top: 10px;
+}
+
+.redHeading {
+    color: rgb(192, 29, 45);
+}
