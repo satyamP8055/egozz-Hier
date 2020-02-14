@@ -17,5 +17,5 @@ echo "Starting Countdown"
 for i in 3 2 1
 do
     echo $i
-    sleep 1
+    sleep 1000
 done
